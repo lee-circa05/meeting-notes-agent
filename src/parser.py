@@ -88,33 +88,45 @@ class MeetingNotesParser:
     
     def extract_action_items(self) -> None:
         """Extract action items from meeting notes."""
-        # Split by common action item delimiters
-        item_patterns = [
-            r'(?:Action Item|AI|Task|TODO)[:\s]*\n?([^\n]+)',
-            r'\|\s*([A-Za-z\s]+?)\s*\|\s*([A-Za-z0-9\s]+?)\s*\|\s*([^\|]+?)\s*\|',  # Table format
-            r'^[-•*]\s+(?:\[.\])?\s*([^\n]+)$',  # Bullet points
-        ]
-        
         action_item_id = 1
         seen_items = set()
         
         # Find all potential action items
         lines = self.notes_text.split('\n')
-        for i, line in enumerate(lines):
+        
+        for line in lines:
+            original_line = line
             line = line.strip()
             
-            # Skip empty lines and headers
-            if not line or line.startswith('#') or line.startswith('|'):
+            # Skip empty lines, headers, section markers
+            if (not line or 
+                line.startswith('#') or 
+                line.startswith('|') or
+                line.isupper() or
+                line.endswith(':') or
+                line.startswith('Meeting') or
+                line.startswith('Date') or
+                line.startswith('Attendees') or
+                line.startswith('P1') or
+                line.startswith('P2') or
+                'ISSUE' in line or
+                'REPORTING' in line):
                 continue
             
-            # Look for owner patterns (e.g., "John - Task description")
-            owner_pattern = r'^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s*(?:-|:)\s+(.+?)(?:\s*(?:by|due|@|until|before))?\s*(?:by|due|@|until|before)?\s*(.*)$'
+            # Look for owner patterns (e.g., "John - Task description - due date - priority")
+            # Pattern: "FirstName [LastName] - description - optional due date - optional priority"
+            owner_pattern = r'^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s*-\s+(.+?)(?:\s*-\s*(.+?))?(?:\s*-\s*([A-Z0-9]+))?$'
             match = re.match(owner_pattern, line)
             
-            if match:
+            if match and len(match.group(1).split()) <= 3:  # Owner should be 1-3 words
                 owner = match.group(1).strip()
                 description = match.group(2).strip()
                 due_info = match.group(3).strip() if match.group(3) else ''
+                priority_str = match.group(4).strip() if match.group(4) else ''
+                
+                # Skip if description is too short (likely not an action item)
+                if len(description) < 5:
+                    continue
                 
                 # Skip if we've seen this exact item
                 item_key = f"{owner}:{description}"
@@ -124,7 +136,9 @@ class MeetingNotesParser:
                 
                 # Extract due date and priority
                 due_date = self._parse_due_date(due_info)
-                priority = self._extract_priority(f"{description} {due_info}")
+                
+                # Priority can be in description, due_info, or priority_str
+                priority = self._extract_priority(f"{description} {due_info} {priority_str}")
                 
                 # Extract ticket number if present
                 ticket_match = re.search(r'#([A-Z]+-\d+)', description)

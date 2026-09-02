@@ -1,0 +1,130 @@
+## Weekly Ticket Review - August 28, 2026
+
+**Attendees:** Sarah (Technical Lead), Mike (Operations Manager), David (Senior Technical), Lisa (Operations)
+
+**Time:** 2:00 PM - 3:00 PM
+
+---
+
+### P1 Tickets Summary
+
+#### Ticket #DB-11111 - Database Replication Lag
+**Status:** Beyond 48-hour SLA
+
+**Details:**
+- Opened: August 26, 10:00 AM (52 hours ago)
+- Impact: Reporting dashboard shows stale data
+- Owner: Technical (David)
+- Current Status: Still troubleshooting
+
+**Action Items:**
+1. **Technical:** Escalate #DB-11111 to senior engineering
+   - Owner: David
+   - Due Date: Today, 3:30 PM (IMMEDIATE)
+   - Priority: P1 - ESCALATION
+   - Dependencies: None
+
+2. **Operations:** Send escalation notification to VP Engineering
+   - Owner: Mike
+   - Due Date: Today, 4:00 PM
+   - Priority: P1
+   - Dependencies: Technical must escalate first
+
+3. **Operations:** Document incident timeline for post-mortem
+   - Owner: Lisa
+   - Due Date: Tomorrow
+   - Priority: P1
+   - Dependencies: Ticket must be resolved first
+
+#### Ticket #API-22222 - API Rate Limiting Issue
+**Status:** 45 hours - approaching SLA threshold
+
+**Details:**
+- Opened: August 27, 11:00 AM
+- Impact: Mobile app users experiencing rate limiting
+- Owner: Technical (John)
+- Current Status: Fix deployed to staging, testing in progress
+
+**Action Items:**
+1. **Technical:** Complete testing of API rate limit fix
+   - Owner: John
+   - Due Date: Today, 5:00 PM
+   - Priority: P1
+   - Dependencies: None
+
+2. **Technical:** Deploy to production if testing passes
+   - Owner: John
+   - Due Date: Tomorrow, 10:00 AM
+   - Priority: P1
+   - Dependencies: Testing must pass
+
+3. **Operations:** Prepare production deployment communication
+   - Owner: Lisa
+   - Due Date: Today, 6:00 PM
+   - Priority: P1
+   - Dependencies: Waiting for test results
+
+---
+
+### P2 Tickets Summary
+
+#### Ticket #UI-33333 - Dashboard Performance
+**Status:** 36 hours - within SLA
+
+**Details:**
+- Opened: August 27, 2:00 PM
+- Impact: Dashboard loads slowly for large datasets
+- Owner: Technical (Sarah)
+- Status: Investigation ongoing
+
+**Action Items:**
+1. **Technical:** Investigate dashboard performance metrics
+   - Owner: Sarah
+   - Due Date: August 29 (tomorrow)
+   - Priority: P2
+   - Dependencies: None
+
+---
+
+### Weekly Reports
+
+**Action Items:**
+1. **Operations:** Compile weekly P1/P2 ticket report
+   - Owner: Mike
+   - Due Date: Friday, August 30, 5:00 PM
+   - Priority: High
+   - Contents:
+     - All P1 tickets and SLA status
+     - All P2 tickets and status
+     - Escalations summary
+     - Key metrics
+
+2. **Operations:** Send weekly report to executive stakeholders
+   - Owner: Lisa
+   - Due Date: Friday, August 30, 5:30 PM
+   - Priority: High
+   - Distribution: VP Engineering, Director of Operations
+
+---
+
+### Key Decisions
+
+1. **URGENT:** Escalate #DB-11111 immediately - beyond 48-hour SLA
+2. Close monitoring on #API-22222 - approaching SLA threshold
+3. Fast-track production deployment for API fix if tests pass
+4. Continue normal investigation pace for P2 tickets
+
+### Escalation Protocol Reminder
+
+**P1 Tickets:**
+- SLA: Resolve within 48 hours
+- Action: Escalate to senior engineering if approaching/past 48 hours
+- Operations: Send email notification on escalations
+
+**P2 Tickets:**
+- SLA: Resolve within 5 business days
+- Action: Escalate if approaching deadline
+
+### Next Meeting
+
+Weekly Ticket Review - September 4, 2026 at 2:00 PM

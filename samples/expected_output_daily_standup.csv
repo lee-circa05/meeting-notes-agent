@@ -1,0 +1,8 @@
+ID,Title,Team,Owner,Due Date,Priority,Ticket,Description,Dependencies,Status
+AI-001,Diagnose database issue #DB-12345,Technical,John,2026-09-02T13:00:00,P1,DB-12345,Investigate database connection pool exhaustion,,not_started
+AI-002,Check connection pool logs,Technical,Sarah,2026-09-02T12:00:00,P1,DB-12345,Review database connection pool logs to identify bottleneck,,not_started
+AI-003,Prepare customer notification if issue persists,Operations,Mike,2026-09-02T14:00:00,P1,DB-12345,Draft and prepare customer notification for potential ongoing issue,AI-001;AI-002,not_started
+AI-004,Investigate AUTH-6789 service latency,Technical,John,2026-09-03T17:00:00,P2,AUTH-6789,Investigate intermittent login timeouts affecting ~0.5% of users,,not_started
+AI-005,Send status update email to stakeholders,Operations,Lisa,2026-09-02T16:00:00,P2,AUTH-6789,Send status update email regarding AUTH service investigation,AI-004,not_started
+AI-006,Create weekly P1/P2 ticket status report,Operations,Mike,2026-09-06T17:00:00,High,,Compile weekly report on all P1/P2 tickets with status updates,,not_started
+AI-007,Send weekly report to leadership,Operations,Lisa,2026-09-06T18:00:00,High,,Send weekly P1/P2 ticket status report to leadership,AI-006,not_started

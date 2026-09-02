@@ -1,0 +1,123 @@
+{
+  "meeting": {
+    "title": "Daily Standup - September 2, 2026",
+    "date": "2026-09-02",
+    "attendees": ["Sarah", "Mike", "John", "Lisa"],
+    "duration_minutes": 30
+  },
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "description": "Technical team to prioritize database issue investigation immediately",
+      "priority": "P1",
+      "context": "Database connection pool exhaustion affecting payment processing"
+    },
+    {
+      "id": "DEC-002",
+      "description": "Escalate to senior DBA if database issue not resolved within 4 hours",
+      "priority": "P1",
+      "condition": "If not resolved by 1:00 PM"
+    },
+    {
+      "id": "DEC-003",
+      "description": "Monitor auth service and investigate root cause - no immediate escalation",
+      "priority": "P2",
+      "context": "Authentication service showing intermittent latency"
+    }
+  ],
+  "action_items": [
+    {
+      "id": "AI-001",
+      "title": "Diagnose database issue #DB-12345",
+      "team": "Technical",
+      "owner": "John",
+      "due_date": "2026-09-02T13:00:00",
+      "priority": "P1",
+      "ticket": "DB-12345",
+      "description": "Investigate database connection pool exhaustion",
+      "dependencies": [],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-002",
+      "title": "Check connection pool logs",
+      "team": "Technical",
+      "owner": "Sarah",
+      "due_date": "2026-09-02T12:00:00",
+      "priority": "P1",
+      "ticket": "DB-12345",
+      "description": "Review database connection pool logs to identify bottleneck",
+      "dependencies": [],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-003",
+      "title": "Prepare customer notification if issue persists",
+      "team": "Operations",
+      "owner": "Mike",
+      "due_date": "2026-09-02T14:00:00",
+      "priority": "P1",
+      "ticket": "DB-12345",
+      "description": "Draft and prepare customer notification for potential ongoing issue",
+      "dependencies": ["AI-001", "AI-002"],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-004",
+      "title": "Investigate AUTH-6789 service latency",
+      "team": "Technical",
+      "owner": "John",
+      "due_date": "2026-09-03T17:00:00",
+      "priority": "P2",
+      "ticket": "AUTH-6789",
+      "description": "Investigate intermittent login timeouts affecting ~0.5% of users",
+      "dependencies": [],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-005",
+      "title": "Send status update email to stakeholders",
+      "team": "Operations",
+      "owner": "Lisa",
+      "due_date": "2026-09-02T16:00:00",
+      "priority": "P2",
+      "ticket": "AUTH-6789",
+      "description": "Send status update email regarding AUTH service investigation",
+      "dependencies": ["AI-004"],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-006",
+      "title": "Create weekly P1/P2 ticket status report",
+      "team": "Operations",
+      "owner": "Mike",
+      "due_date": "2026-09-06T17:00:00",
+      "priority": "High",
+      "description": "Compile weekly report on all P1/P2 tickets with status updates",
+      "dependencies": [],
+      "status": "not_started"
+    },
+    {
+      "id": "AI-007",
+      "title": "Send weekly report to leadership",
+      "team": "Operations",
+      "owner": "Lisa",
+      "due_date": "2026-09-06T18:00:00",
+      "priority": "High",
+      "description": "Send weekly P1/P2 ticket status report to leadership",
+      "dependencies": ["AI-006"],
+      "status": "not_started"
+    }
+  ],
+  "summary": {
+    "total_action_items": 7,
+    "by_team": {
+      "Technical": 3,
+      "Operations": 4
+    },
+    "by_priority": {
+      "P1": 5,
+      "P2": 2
+    }
+  }
+}

@@ -1,0 +1,99 @@
+## Daily Standup - September 2, 2026
+
+**Attendees:** Sarah (Technical Lead), Mike (Operations Manager), John (Technical), Lisa (Operations)
+
+**Time:** 9:00 AM - 9:30 AM
+
+---
+
+### Topics Discussed
+
+#### 1. Production Database Issue (P1)
+**Reported by:** Sarah
+
+Issue: Database connection pool exhaustion affecting payment processing
+
+**Details:**
+- Ticket #DB-12345 opened at 8:00 AM
+- Impact: 2% of transactions failing
+- Root cause: Still investigating
+- Created timestamp: Sept 2, 8:00 AM
+
+**Decisions:**
+- Technical team to prioritize this investigation immediately
+- Escalate to senior DBA if not resolved within 4 hours
+
+**Action Items:**
+1. **Technical:** Diagnose database issue #DB-12345
+   - Owner: John
+   - Due Date: Today, 1:00 PM (4 hours)
+   - Priority: P1
+   - Dependencies: None
+
+2. **Technical:** Check connection pool logs
+   - Owner: Sarah
+   - Due Date: Today, 12:00 PM (3 hours)
+   - Priority: P1
+   - Dependencies: None
+
+3. **Operations:** Prepare customer notification if issue persists
+   - Owner: Mike
+   - Due Date: Today, 2:00 PM (5 hours)
+   - Priority: P1
+   - Dependencies: Waiting for Technical diagnosis
+
+#### 2. Authentication Service Degradation (P2)
+**Reported by:** Mike
+
+Issue: Login timeouts reported by 5 customers
+
+**Details:**
+- Ticket #AUTH-6789 opened at 7:30 AM
+- Impact: Minor - affects ~0.5% of users
+- Status: Intermittent - appears to be latency issue
+
+**Decisions:**
+- Monitor service and investigate root cause
+- No immediate escalation needed
+
+**Action Items:**
+1. **Technical:** Investigate AUTH-6789 service latency
+   - Owner: John
+   - Due Date: Tomorrow, 5:00 PM
+   - Priority: P2
+   - Dependencies: None
+
+2. **Operations:** Send status update email to stakeholders
+   - Owner: Lisa
+   - Due Date: Today, 4:00 PM
+   - Priority: P2
+   - Dependencies: Waiting for Technical update
+
+#### 3. Weekly Reporting
+**Discussed by:** Mike
+
+**Action Items:**
+1. **Operations:** Create weekly P1/P2 ticket status report
+   - Owner: Mike
+   - Due Date: Friday, 5:00 PM
+   - Priority: High
+   - Dependencies: All tickets must be in final status
+
+2. **Operations:** Send weekly report to leadership
+   - Owner: Lisa
+   - Due Date: Friday, 6:00 PM
+   - Priority: High
+   - Dependencies: Report must be complete first
+
+---
+
+### Key Decisions
+
+1. Prioritize database issue (P1) - critical for revenue
+2. Monitor auth service but no immediate action needed (P2)
+3. Weekly reports due Friday EOD
+4. Escalation protocol: P1 issues > 4 hours trigger senior escalation
+
+### Next Meeting
+
+Daily Standup - September 3, 2026 at 9:00 AM

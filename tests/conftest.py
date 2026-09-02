@@ -8,125 +8,9 @@ import csv
 from pathlib import Path
 from datetime import datetime, timedelta
 
-
-class MeetingNotesParser:
-    """
-    Main parser for converting meeting notes to structured action items.
-    This is a stub implementation for testing purposes.
-    """
-    
-    def __init__(self, notes_text):
-        self.notes_text = notes_text
-        self.action_items = []
-        self.decisions = []
-    
-    def parse(self):
-        """Parse meeting notes and extract structured data."""
-        self.extract_action_items()
-        self.extract_decisions()
-        self.assign_teams()
-        return self.get_structured_output()
-    
-    def extract_action_items(self):
-        """Extract action items from notes."""
-        # Placeholder - actual implementation would use NLP
-        pass
-    
-    def extract_decisions(self):
-        """Extract key decisions from notes."""
-        # Placeholder - actual implementation would use NLP
-        pass
-    
-    def assign_teams(self):
-        """Assign action items to Operations or Technical team."""
-        for item in self.action_items:
-            if self._is_operations_task(item):
-                item['team'] = 'Operations'
-            elif self._is_technical_task(item):
-                item['team'] = 'Technical'
-    
-    def _is_operations_task(self, item):
-        """Determine if task belongs to Operations team."""
-        keywords = ['report', 'email', 'notification', 'communication', 'update', 'send']
-        title_lower = item.get('title', '').lower()
-        return any(kw in title_lower for kw in keywords)
-    
-    def _is_technical_task(self, item):
-        """Determine if task belongs to Technical team."""
-        keywords = ['diagnose', 'investigate', 'troubleshoot', 'fix', 'deploy', 'escalate', 'check']
-        title_lower = item.get('title', '').lower()
-        return any(kw in title_lower for kw in keywords)
-    
-    def get_structured_output(self):
-        """Return structured output as dictionary."""
-        return {
-            'action_items': self.action_items,
-            'decisions': self.decisions
-        }
-
-
-class OutputFormatter:
-    """Format structured action items into various output formats."""
-    
-    def __init__(self, structured_data):
-        self.data = structured_data
-    
-    def to_json(self):
-        """Convert to JSON format."""
-        return json.dumps(self.data, indent=2, default=str)
-    
-    def to_csv(self):
-        """Convert to CSV format."""
-        items = self.data.get('action_items', [])
-        if not items:
-            return ""
-        
-        # Get all keys from action items
-        fieldnames = set()
-        for item in items:
-            fieldnames.update(item.keys())
-        fieldnames = sorted(list(fieldnames))
-        
-        output = []
-        writer = None
-        for item in items:
-            if writer is None:
-                writer = True
-                output.append(','.join(fieldnames))
-            values = [str(item.get(field, '')) for field in fieldnames]
-            output.append(','.join(values))
-        
-        return '\n'.join(output)
-    
-    def to_markdown(self):
-        """Convert to Markdown format."""
-        items = self.data.get('action_items', [])
-        lines = ["# Action Items\n"]
-        
-        # Group by team
-        operations = [i for i in items if i.get('team') == 'Operations']
-        technical = [i for i in items if i.get('team') == 'Technical']
-        
-        if technical:
-            lines.append("## Technical Team\n")
-            for item in technical:
-                lines.append(self._format_item_markdown(item))
-        
-        if operations:
-            lines.append("\n## Operations Team\n")
-            for item in operations:
-                lines.append(self._format_item_markdown(item))
-        
-        return '\n'.join(lines)
-    
-    def _format_item_markdown(self, item):
-        """Format single action item as markdown."""
-        title = item.get('title', 'Untitled')
-        owner = item.get('owner', 'Unassigned')
-        due = item.get('due_date', 'No due date')
-        priority = item.get('priority', 'Normal')
-        
-        return f"- **{title}**\n  - Owner: {owner}\n  - Due: {due}\n  - Priority: {priority}\n"
+# Import actual implementations
+from src.parser import MeetingNotesParser
+from src.formatters import OutputFormatter
 
 
 # Test Fixtures
@@ -181,12 +65,19 @@ def sample_structured_data():
 
 
 @pytest.fixture
-def parser(sample_structured_data):
+def parser():
     """Initialize parser with sample data."""
-    parser = MeetingNotesParser("")
-    parser.action_items = sample_structured_data['action_items']
-    parser.decisions = sample_structured_data['decisions']
-    return parser
+    sample_notes = """
+    Meeting: Daily Standup - September 2, 2026
+    Date: 2026-09-02
+    Attendees: John Smith, Sarah Chen, Lisa Wang
+    
+    John - Diagnose database issue #DB-12345 - TODAY 1 PM - P1
+    Sarah - Check connection pool logs - TODAY 12 PM - P1
+    Lisa - Send status update email - TODAY 4 PM - P2
+    Mike - Create weekly P1/P2 report - Friday 5 PM - High
+    """
+    return MeetingNotesParser(sample_notes)
 
 
 @pytest.fixture
